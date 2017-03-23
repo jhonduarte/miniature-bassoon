@@ -34,11 +34,11 @@ JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name + " 
         }
     }
   
-  //
+  //Crea la lista de la db
    public void crearTabla(String name) {
         try {
             String Query = "Crear Tabla" + name + ""
-                    + " (ID VARCHAR(25),Producto VARCHAR(50),Cantidad VARCHAR(50),"
+                    + " (ID VARCHAR(25),Producto VARCHAR(100),Cantidad VARCHAR(50),"
                     + " PrecioUnitario VARCHAR(50), Precio Total VARCHAR(50))";
 
             Statement st = Conexion.createStatement();
@@ -46,6 +46,19 @@ JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name + " 
 JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + name + " de forma exitosa");
         } catch (SQLException ex) {
             Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+  
+   public void crearTabla(String table_name, String ID, String Producto, String Cantidad, String PrecioUnitario, String PrecioTotal r) {
+        try {
+            String Query = "Insertar" + table_name + " Valores"
+                    + "\"" + ID + "\", "
+                    + "\"" + Producto + "\", "
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
         }
     }
   
