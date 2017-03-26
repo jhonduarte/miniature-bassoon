@@ -54,6 +54,9 @@ JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + name + " de forma
             String Query = "Insertar" + table_name + " Valores"
                     + "\"" + ID + "\", "
                     + "\"" + Producto + "\", "
+                    + "\"" + Cantidad + "\", "
+                    + "\"" + PrecioUnitario + "\", "    
+                    + "\"" + PrecioTotal + "\", "
             Statement st = Conexion.createStatement();
             st.executeUpdate(Query);
             JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
@@ -62,10 +65,42 @@ JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + name + " de forma
         }
     }
   
-  /*//Metodo que finaliza la conexión con el servidor
+   //Método para consultar los valores de la Base de Datos
+   public void getValues(String table_name) {
+        try {
+            String Query = "Seleccionar * de " + table_name;
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+
+            while (resultSet.next()) {
+                System.out.println("ID: " + resultSet.getString("ID") + " "
+                        + "Producto: " + resultSet.getString("Producto") + " "
+                        + "Cantidad: " + resultSet.getString("Edad") + " "
+                        + "Precio Unitario: " + resultSet.getString("PrecioUnitario) + " "
+                        + "Precio Total: " + resultSet.getString("PrecioTotal"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
+        }
+    }
+    
+    //Método para borrar el registro de la Base de datos. 
+     public void deleteRecord(String table_name, String ID) {
+        try {
+            String Query = "DELETE FROM " + table_name + " WHERE ID = \"" + ID + "\"";
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");
+        }
+    }                               
+  //Metodo que finaliza la conexión con el servidor
    public static void main(String[] args) {
         MySQL db = new MySQL();
         db.MySQLConnection("admin", "", "");
     }
-  */
 }
