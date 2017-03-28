@@ -77,7 +77,7 @@ JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + name + " de forma
                 System.out.println("ID: " + resultSet.getString("ID") + " "
                         + "Producto: " + resultSet.getString("Producto") + " "
                         + "Cantidad: " + resultSet.getString("Edad") + " "
-                        + "Precio Unitario: " + resultSet.getString("PrecioUnitario) + " "
+                        + "Precio Unitario: " + resultSet.getString("PrecioUnitario") + " "
                         + "Precio Total: " + resultSet.getString("PrecioTotal"));
             }
 
